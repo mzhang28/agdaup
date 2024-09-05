@@ -1,0 +1,21 @@
+name: Build Agda
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest, windows-latest]
+        agda-version: [2.6.2, 2.7.0]
+
+    steps:
+      - uses: haskell-actions/setup@v2
+        with:
+          ghc-version: 9.8.2
+          cabal-version: 3.10.3.0
+      - name: Install Agda
+        run: cabal install Agda
