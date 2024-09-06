@@ -5,14 +5,14 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    # runs-on: ${{ matrix.os }}
-    # strategy:
-    #   matrix:
-    #     os: [ubuntu-latest, macOS-latest, windows-latest]
-    #     agda-version: [2.6.2, 2.7.0]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest]
+        # agda-version: [2.6.2, 2.7.0]
 
     steps:
-      - name: Cache Primes
+      - name: Cache cabal
         uses: actions/cache@v4
         with:
           path: ~/.cabal
