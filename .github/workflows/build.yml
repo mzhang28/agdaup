@@ -4,7 +4,6 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -16,7 +15,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cabal
-          key: cabal-dir
+          key: cabal-dir-${{ matrix.os }}
       - uses: haskell-actions/setup@v2
         with:
           ghc-version: 9.8.2
