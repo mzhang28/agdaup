@@ -16,6 +16,11 @@ jobs:
         with:
           ghc-version: 9.8.2
           cabal-version: 3.10.3.0
+      - run: mkdir -p installdir
       - name: Install Agda
-        run: cabal install Agda
-      - 
+        run: cabal install --installdir installdir Agda
+      - run: tar cvf agda.tar.gz -C "$(dirname $(dirname $(realpath installdir/agda)))" .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: agda.tar.gz
+          path: agda.tar.gz
